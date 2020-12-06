@@ -1,3 +1,8 @@
+@import './style/cart';
+@import './style/common';
+@import './style/products';
+@import './style/login';
+
 .App {
   text-align: center;
 }

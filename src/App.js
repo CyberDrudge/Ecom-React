@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Route, BrowserRouter as Router, Redirect, withRouter } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux'
+import './App.css'
+import Main from './app/main'
+import Header from './app/header'
+import * as actionCreators from './app/actioncreators'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {loading: false}
+	}
+	componentDidMount(){
+		const { actions } = this.props
+		actions.autoLogin()
+	}
+	render() {
+		const { loading } = this.state
+		if (loading) {
+			return <div>Loading </div>
+		} else {
+			return (
+				<div className="App">
+					<Header />
+					<Main />
+				</div>
+			)
+		}
+	}
 }
 
-export default App;
+const AppWithRouter = withRouter(App)
+
+const mapDispatchToProps = (dispatch) => {
+	return {actions: bindActionCreators(actionCreators, dispatch)}
+}
+
+export default connect(null, mapDispatchToProps)(AppWithRouter)
