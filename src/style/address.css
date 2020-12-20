@@ -1,0 +1,15 @@
+.add-new{
+	margin-top: 20px;
+	margin-right: 30px;
+}
+
+.address-card{
+	flex: 0 0 60%;
+	max-width: 60%;
+	margin:10px;
+}
+
+.select-address{
+	font-size: 1.25rem;
+	margin: 20px;
+}
