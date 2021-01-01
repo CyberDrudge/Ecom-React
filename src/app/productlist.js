@@ -85,7 +85,7 @@ class ProductList extends React.Component {
 					onPageChange={this.handlePageClick}
 					marginPagesDisplayed={2}
 					pageRangeDisplayed={5}
-					containerClassName={"pagination"}
+					containerClassName={"custom-pagination"}
 					activeClassName={"active"}
 					forcePage={currentpage}
 				/>

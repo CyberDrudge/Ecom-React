@@ -26,7 +26,6 @@ class AddressList extends React.Component {
 		actions.getAddresses()
 			.then(res => {
 				let response = res.data
-				console.log(response)
 				this.setState({loading: false, response: false, addressList: response.data})
 			})
 	}	
@@ -42,10 +41,11 @@ class AddressList extends React.Component {
 		const { actions, history } = this.props
 		const { billing_address, shipping_address } = this.state
 		e.preventDefault()
-		console.log(billing_address, shipping_address)
 		localStorage.setItem("billing_address", billing_address);
 		localStorage.setItem("shipping_address", shipping_address);
-		console.log(localStorage.getItem("billing_address"))
+		history.push({
+			pathname: "/checkout"
+		})
 	}
 
 	displayAddresses(address_type) {

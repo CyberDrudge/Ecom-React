@@ -21,19 +21,14 @@ class Cart extends React.Component {
 	loadCart() {
 		const { loading } = this.state
 		const { actions, isLoggedIn } = this.props
-		console.log("C", isLoggedIn)
 		if (!loading) {
 			this.setState({loading: true, response: false})
 		}
 		actions.getCart()
 			.then(res => {
-				this.setState({
-					isCartEmpty: (res.data.products.length === 0),
-					// error: res.data.errorMessage && <Error message={res.data.errorMessage}/>,
-					loading: false })
+				this.setState({ isCartEmpty: (res.data.products.length === 0), loading: false })
 			})
 			.catch(() => {
-				// this.setState({loading:false, error:<Error message="Failed to load sites. Please refresh this page or Contact us."/>})
 				this.setState({loading:false})
 			})
 	}
@@ -65,7 +60,7 @@ class Cart extends React.Component {
 					<th className="text-center" scope="row">{ index+1 }.</th>
 					<td>
 						<a className="product-name" href="{{ product.get_absolute_url }}">{ item.title }</a>
-						<button className="remove mr-30" onClick={()=>{this.removeProductFromCart(item.id)}}>Remove</button>
+						<button className="btn remove mr-30" onClick={()=>{this.removeProductFromCart(item.id)}}>Remove</button>
 					</td>
 					<td>{ item.price }</td>
 			</tr>)

@@ -37,28 +37,28 @@ class Login extends Component {
 		const { errorMessage } = this.props
 		const { isLoggingIn, authFailed } = this.state
 		return (
-			<div class="container">
+			<div className="container">
 			{ authFailed && <Error message={"Authentication Failed"} /> }
-				<div class="login-header">
-					<h2 class="float-left my-0">LOGIN</h2>
-					<div class="float-right create-account" routerLink="/register" routerLinkActive="active"> Create Account </div>
+				<div className="login-header">
+					<h2 className="float-left my-0">LOGIN</h2>
+					<div className="float-right create-account" to="/register"> Create Account </div>
 				</div>
 				<form onSubmit={this.onSubmit}>
 					<input className="form-control" type="email" name="email"
 						placeholder="Official Email" value={this.state.email} onChange={this.handleOnChange} />
 					<input name="password" className="form-control" type="password" required
 						placeholder="Password" value={this.state.password} onChange={this.handleOnChange} />
-					<div class="my-1">
+					<div className="my-1">
 						<input type="checkbox" />
-						<span class="sub-title"> Keep me logged in </span>
+						<span className="sub-title"> Keep me logged in </span>
 					</div>
 					<button type="submit">
-						{ isLoggingIn && <span if="isLoggingIn"><img class="auth_loader" src="./assets/gifs/loader2.gif" /></span>}
+						{ isLoggingIn && <span if="isLoggingIn"><img className="auth_loader" src="./assets/gifs/loader2.gif" /></span>}
 						<span>Login</span>
 					</button>
 				</form>
-				<div class="mt-20 text-right secondary">
-					<span class="warning">Forgot password?</span>
+				<div className="mt-20 text-right secondary">
+					<span className="warning">Forgot password?</span>
 				</div>
 			</div>
 		)
@@ -73,7 +73,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-	onLoginClick: PropTypes.func.isRequired,
+	onLoginClick: PropTypes.func,
 	errorMessage: PropTypes.string
 }
 

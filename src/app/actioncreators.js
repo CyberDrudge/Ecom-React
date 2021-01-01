@@ -12,8 +12,10 @@ const requestApi = (params) => {
 	const method = params.method
 	const url = `${urlRoot}${params.path}`
 	const responseType = (params.responseType || 'json')
+	let token = localStorage.getItem("token")
+	const headers = token && {'Authorization': `Bearer ${token}`}
 
-	const requestParams = { method, url, responseType }
+	const requestParams = { method, url, responseType, headers }
 
 	// `data` is the data to be sent as the request body
 	// Only applicable for request methods 'PUT', 'POST', and 'PATCH'
@@ -65,8 +67,8 @@ export function addProductToCart(params={}) {
 		params['cart_id'] = cart_id
 		return requestApi({
 			method : 'POST',
-			path   : '/cart/update',
-			data  : params
+			path : '/cart/update',
+			data : params
 		}).then(res => {
 			let response = res.data
 			let cart = response.data
@@ -75,6 +77,58 @@ export function addProductToCart(params={}) {
 				return response
 			}
 		})
+	}
+}
+
+export function getCheckoutDetails(params={}) {
+	return function(dispatch) {
+		return requestApi({
+			method : 'POST',
+			path : '/cart/checkout',
+			data : params
+		})
+	}
+}
+
+export function getAddresses(params={}) {
+	return function(dispatch) {
+		return requestApi({
+			method : 'GET',
+			path : '/addresses',
+			data : params
+		})
+	}
+}
+
+export function addAddress(params={}) {
+	return function(dispatch) {
+		return requestApi({
+			method : 'POST',
+			path : '/checkout/address/create/',
+			data : params
+		})
+	}
+}
+
+export function checkout(params={}) {
+	return function(dispatch) {
+		dispatch({type: action.CHECKOUT})
+	}
+}
+
+export function fetchNotifications(params={}) {
+	return function(dispatch) {
+		return requestApi({
+			method : 'GET',
+			path : '/notifications',
+			data : params
+		})
+	}
+}
+
+export function setNotifications(notifications) {
+	return function(dispatch) {
+		dispatch({type: action.SET_NOTIFICATIONS, data: notifications})
 	}
 }
 

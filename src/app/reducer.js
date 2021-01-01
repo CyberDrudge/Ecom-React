@@ -47,24 +47,33 @@ function mapToState(currentState, newState) {
 export default function(state = initialState(), action) {
 	action = Immutable.fromJS(action)
 	switch (action.get('type')) {
+		case actionName.CHECKOUT:
+			localStorage.removeItem("cart_id")
+			return Object.assign({}, state, {
+				cart: []
+			})
 		case actionName.LOG_IN:
-			return {
-				isLoggedIn: true,
-				user: {...action.payload}
-			}
+			return Object.assign({}, state, {
+				isLoggedIn: true
+			})
 		case actionName.LOG_OUT:
 			localStorage.clear()
-			return {
+			return Object.assign({}, state, {
 				isLoggedIn: false,
 				user: {}
-			}
+			})
 		case actionName.SET_CART:
 			let cart = action.getIn(['data'])
 			let cart_id = action.getIn(['data', 'id'])
 			localStorage.setItem("cart_id", cart_id)
-			return {
-				cart: cart
-			}
+			return Object.assign({}, state, {
+				cart: cart,
+			})
+		case actionName.SET_NOTIFICATIONS:
+			let notifications = action.getIn(['data'])
+			return Object.assign({}, state, {
+				notifications: notifications
+			})
 		default: {
 			return state
 		}

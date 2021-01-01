@@ -19,6 +19,7 @@ let store = process.env.NODE_ENV !== 'production' ? createStoreWithMiddleware(re
 
 ReactDOM.render(
 	<React.StrictMode>
+	<link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css" />
 		<Provider store={store}>
 			<BrowserRouter>
 				<App />

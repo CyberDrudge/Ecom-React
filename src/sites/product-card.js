@@ -19,6 +19,7 @@ class ProductCard extends React.Component {
 		if (!loading) {
 			this.setState({loading: true, response: false})
 		}
+		// { isProductIncart ? "Remove" : "Add"}
 		actions.addProductToCart({product_id: product_id})
 			.then(res => {
 				this.setState({loading: false})
@@ -34,11 +35,13 @@ class ProductCard extends React.Component {
 			<div className="product-card rounded my-1">
 				<div className="card-body rounded">
 					<h5 className="card-title"> { product.title } </h5>
+					
 					<p className="card-text"> { product.description } </p>
-					<a className="btn btn-primary" href="/products/{product.slug}">View</a>
-					{ !loading ? <button onClick={()=>{this.addProductToCart(product.id)}}>
-						{ isProductIncart ? "Remove" : "Add"}
-					</button> : null }
+					<button className="btn btn-success" onClick={()=>{this.addProductToCart(product.id)}}>	
+						{ loading ? <span className="mdi mdi-circle-outline mdi-spin" ></span> : <span>
+							{ isProductIncart ? "Remove" : "Add"}
+						</span> }
+					</button>
 				</div>
 			</div>
 		</div>)
