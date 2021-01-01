@@ -1,0 +1,178 @@
+li{position:relative;cursor:pointer;list-style-type: none;}
+li .bv-notification-dropdown{display:none;background-color:#f9f9f9;position:absolute;left:70%;transform:translateX(-70%);top:3rem;z-index:9;cursor:default;box-shadow:0 5px 15px 0 #bfbfbf}
+li .bv-notification-dropdown li{min-width:300px;background-color:#fff;padding:11px 15px 15px;margin-left:0;border-top:1px solid #dbdbdb;text-align:center}
+li .bv-notification-dropdown li:last-child{margin-bottom:0}
+li .bv-notification-dropdown li:first-child{border-top:0}
+li .bv-notification-dropdown li#unread {background-color: #f5f9ff;}
+.bv-notification-date{color:#979797;text-align:right;display:block; margin-top: 10px;}
+li .bv-notification-dropdown li .bv-notification-date .mdi-close{float:right;cursor:pointer}
+li .bv-notification-dropdown li .bv-notification-title{display:block;position:relative;margin-top:-1.4rem}
+.bv-notification-title i{color:#4a90e2;font-size:22px;float:left}
+.bv-notification-name{font-weight:600;color:#252e31;margin-left:30px;text-align:left;}
+li .bv-notification-dropdown li .bv-notification-title .bv-notification-site-link{padding-top:0.8rem;font-size:1.2rem;color:#249182;margin-left:3rem;text-align:left;}
+li .bv-notification-dropdown li .bv-notification-title .bv-notification-site-link a{color:#249182}
+.bv-notification-desc{color:#252e31;margin-top:0.5rem;text-align:left;line-height:1.5; margin-left: 30px;}
+.bv-notification-desc a {color:#249182}
+.bv-notification-desc .notification-show-more {margin-left: -3rem;text-align: center; padding-top: 1rem; display: block;}
+li .bv-notification-dropdown li .bv-secondary-button{text-align:center;margin-left:0;color:#4a90e2;border-color:#4a90e2}
+li .bv-notification-dropdown li .bv-secondary-button:hover{background-color:#4a90e2}
+li .bv-notification-dropdown li.bv-notification-blue .bv-notification-title i{color:#4a90e2}
+li .bv-notification-dropdown li.bv-notification-blue .bv-secondary-button{color:#4a90e2;border-color:#4a90e2}
+li .bv-notification-dropdown li.bv-notification-blue .bv-secondary-button:hover{background-color:#4a90e2;color:#fff}
+li .bv-notification-dropdown li.bv-notification-orange .bv-notification-title i{color:#f5a623}
+li .bv-notification-dropdown li.bv-notification-orange .bv-secondary-button{color:#f5a623;border-color:#f5a623}
+li .bv-notification-dropdown li.bv-notification-orange .bv-secondary-button:hover{background-color:#f5a623;color:#fff}
+li .bv-notification-dropdown li.bv-notification-red .bv-notification-title i{color:#ff5166}
+li .bv-notification-dropdown li.bv-notification-green .bv-notification-title i{color:#249182}
+li .bv-notification-dropdown:before{content:'';position:absolute;width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid #f9f9f9;left:70%;top:-1rem;transform:translateX(-70%)}
+.bv-site-listing-progress-dropdown-btn{position:relative;cursor:pointer}
+.bv-site-listing-progress-dropdown-btn:hover{color:#b3adb3;}
+.bv-site-listing-progress-dropdown-btn .mdi-clock-alert{font-size:2.1rem;}
+.bv-site-listing-progress-dropdown-btn .mdi-chevron-down{font-size:2rem;vertical-align:sub;margin-left:.5rem;color:#249182}
+.bv-task-complete-confirmation{background-color:#fff;position:fixed;left:1.6%;;bottom:2rem;z-index:99999;cursor:default;box-shadow:0 5px 15px 0 #bfbfbf}
+.bv-task-complete-confirmation li{max-width:32rem;background-color:#fff;padding:1rem 1.5rem 1.5rem;margin-left:0;text-align:center}
+.bv-task-complete-confirmation li#unread {background-color: #f5f9ff;}
+.bv-task-complete-confirmation li .bv-notification-title{display:block;position:relative;}
+.bv-task-complete-confirmation li .bv-notification-title .bv-notification-site-link{padding-top:0.8rem;font-size:1.2rem;color:#249182;margin-left:3rem;text-align:left;}
+.bv-task-complete-confirmation li .bv-notification-title .bv-notification-site-link a{color:#249182}
+.bv-task-complete-confirmation li.bv-notification-blue .bv-notification-title i{color:#4a90e2}
+.bv-task-complete-confirmation li.bv-notification-blue .bv-secondary-button{color:#4a90e2;border-color:#4a90e2}
+.bv-task-complete-confirmation li.bv-notification-blue .bv-secondary-button:hover{background-color:#4a90e2;color:#fff}
+.bv-task-complete-confirmation li.bv-notification-orange .bv-notification-title i{color:#f5a623}
+.bv-task-complete-confirmation li.bv-notification-orange .bv-secondary-button{color:#f5a623;border-color:#f5a623}
+.bv-task-complete-confirmation li.bv-notification-orange .bv-secondary-button:hover{background-color:#f5a623;color:#fff}
+.bv-task-complete-confirmation li.bv-notification-red .bv-notification-title i{color:#ff5166}
+.bv-task-complete-confirmation li.bv-notification-green .bv-notification-title i{color:#249182}
+.bv-flash-sale-popup {letter-spacing:0.07rem; font-family: 'IBM Plex Sans', sans-serif; font-size:1.5rem; background: #9013FE; color: #fff; padding: 1.5rem; text-align: center; border:0}
+.bv-flash-sale-popup .bv-popup-close {text-align: right; margin-top: -1.2rem;}
+.bv-marketing-popup{text-align: center;  background-color:#f9f9f9;position:absolute;left:55%;transform:translateX(-70%);top:15rem;z-index:9;cursor:default;box-shadow:0 5px 15px 0 #bfbfbf}
+.bv-marketing-popup ul{text-align: center; }
+.bv-marketing-popup li{max-width:32rem;background-color:#fff;padding:1.1rem 1.5rem 1.5rem;margin-left:0;text-align:center}
+.bv-marketing-popup li .bv-notification-title{display:block;position:relative;margin-top:1.4rem}
+.bv-marketing-popup li .bv-notification-title .bv-notification-site-link{padding-top:0.8rem;font-size:1.2rem;color:#249182;margin-left:3rem;}
+.bv-marketing-popup li .bv-notification-title .bv-notification-site-link a{color:#249182}
+.bv-marketing-popup li .bv-secondary-button{text-align:center;margin-left:0;color:#fff;border:0;background: #ff5166; margin-bottom: 1.2rem;}
+.bv-marketing-popup li .bv-secondary-button:hover{background-color:#4a90e2}
+header .bv-top-right-nav{margin-top:2.3rem}
+header li{color:#fff;list-style:none;display:inline-block;font-size:1.2rem;margin-left:1.5rem}
+header li:first-child{border-right:1px solid #fff;padding-right:2rem;vertical-align:bottom}
+header li:first-child a{color:#fff}
+header li:first-child a i{vertical-align:text-bottom;margin-right:.5rem}
+header li i{font-size:1.6rem}
+header li i.mdi-chevron-down{position:relative;top:.3rem}
+header li i.mdi-bell-outline .bv-notification-count{background-color:#ff5166;color:#fff;font-size:.9rem;font-weight:600;font-family:'Open Sans';padding:.35rem .5rem;position:relative;top:-1rem;left:-0.7rem;border-radius:10rem}
+
+.bv-menu-item:hover {
+	cursor: pointer;
+	background-color: #e0e0e0 !important; }
+
+
+
+@media(max-width:420px) {
+	.mdi-menu{display:block}
+	header .bv-top-right-nav{margin-bottom:2.3rem}
+	header li:first-child{display:inline-block}
+	.bv-top-menu .bv-dashboard-link,.bv-top-menu .bv-my-sites-link,.bv-top-menu .bv-add-link{display:none;}
+	.bv-top-menu .bv-logo{float:left;margin-left:0}
+	.bv-top-menu .bv-logo img{margin-right:0}
+	.bv-mobile-navigation{display:block;}
+	.bv-dashboard-link>i,.bv-my-sites-link>i,.bv-my-sites-link>i{margin-right:1.5rem;margin-left:1.5rem;top:1rem; font-size: 2.1rem !important;}
+	.add_client_link>i{margin-left:0;top:.3rem}
+	header{padding:0 0 10px !important;}
+	header li{margin-left: 0px !important;}
+	/* .header-btn{display: none;} */
+	.add_client_link{background:#249182;border-radius: .3rem;margin:1.6rem 0 0 2.5rem;padding:1rem 2rem; float: right;display: none !important;}
+	.add_site_btn_mobile{padding: 1rem 2rem 1rem 0rem !important;margin-left: 4rem;}
+}
+@media(max-width:320px) {
+	.bv-dashboard-link>i,.bv-my-sites-link>i,.bv-my-sites-link>i{margin-right:.5rem;margin-left: 0.2rem;}
+	header li{margin-left:0}
+	header li {margin-left: 1.5rem !important;}
+	.manage-list-table{padding-top: 21rem !important;}
+	.no-client-div{padding-top: 20rem !important;}
+}
+li .bv-account-dropdown{display:none;background:#fff;border:1px solid #dbdbdb;position:absolute;left:20%;transform:translateX(-70%);top:3rem;z-index:9;cursor:default;min-width:240px;box-shadow:0 5px 15px 0 #bfbfbf}
+li .bv-account-dropdown ul{padding:1rem 0;border-bottom:1px solid #d8d8d8}
+li .bv-account-dropdown ul li{color:#979797;font-size:1.4rem;display:block;}
+li .bv-account-dropdown ul li a{color:#252e31;display:block;padding:1rem 2rem}
+li .bv-account-dropdown ul li:last-child{margin-bottom:0}
+li .bv-account-dropdown ul li i{font-size:2rem;margin-right:1rem;vertical-align:middle}
+li .bv-account-dropdown ul li:hover{background-color:#d8d8d8}
+li .bv-account-dropdown:before{content:'';position:absolute;width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid #fff;left:80%;top:-1rem;transform:translateX(-70%)}
+li .bv-account-dropdown .bv-account-dropdown-plan-details{padding:2rem;text-align:center;color:#252e31;border-bottom:1px solid #d8d8d8}
+li .bv-account-dropdown .bv-account-dropdown-plan-details .bv-plan-title{margin-bottom:2rem;font-size:1rem}
+li .bv-account-dropdown .bv-account-dropdown-plan-details .bv-site-count{font-size:3.4rem;font-weight:300}
+li .bv-account-dropdown .bv-account-dropdown-plan-details .bv-usage-status-bar{width:20rem;height:1rem;border-radius:2rem;position:relative}
+li .bv-account-dropdown .bv-account-dropdown-plan-details .bv-usage-status-bar .progress-bar{background-color:#4a90e2}
+li .bv-account-dropdown .bv-account-dropdown-plan-details .bv-usage-status-bar span{width:8rem;background-color:#4a90e2;display:inline-block;height:100%;border-radius:2rem;position:absolute;left:0}
+li .bv-account-dropdown .bv-account-dropdown-logout{text-align:center;padding:2rem}
+li .bv-account-dropdown .bv-account-dropdown-logout a{margin:0}
+li .bv-account-dropdown .bv-account-dropdown-user-accounts li{display:block;text-align:left;clear:both;opacity:.2}
+li .bv-account-dropdown .bv-account-dropdown-user-accounts li.active{opacity:1}
+li .bv-account-dropdown .bv-account-dropdown-user-accounts .bv-account-pic{float:left}
+li .bv-account-dropdown .bv-account-dropdown-user-accounts .bv-account-pic i{font-size:3rem;position:relative;top:-0.8rem}
+li .bv-account-dropdown .bv-account-dropdown-user-accounts .bv-account-pic i .mdi-checkbox-blank-circle{color:#44a944;font-size:1.1rem;top:.6rem;left:-1rem}
+li .bv-account-dropdown .bv-account-dropdown-user-accounts .bv-account-name{padding-top:1rem}
+header .bv-top-right-nav{margin-top:2.3rem}
+header li{color:#fff;list-style:none;display:inline-block;font-size:1.2rem;margin-left:1.5rem}
+header li:hover{color:#b3adb3;}
+header li:first-child{border-right:1px solid #fff;padding-right:2rem;vertical-align:bottom}
+header li:first-child a{color:#fff}
+header li:first-child a i{vertical-align:text-bottom;margin-right:.5rem}
+header li i.mdi-chevron-down{position:relative;top:.3rem}
+header li i.mdi-bell-outline .bv-notification-count, header li .bv-progress-notification-count{background-color:#ff5166;color:#fff;font-size:.9rem;font-weight:600;font-family:'Open Sans';padding:.35rem .5rem;position:relative;top:-1rem;left:-0.7rem;border-radius:10rem}
+
+@media(max-width:420px){.mdi-menu{display:block;padding: 1rem; top:5.8rem; left: 0.8rem;}
+	header .bv-top-right-nav{margin-bottom:2.3rem;padding: 1rem 0;}
+	header li:first-child{display:inline-block;}
+	.bv-top-menu .bv-logo img{margin-right:0;margin-left: 0;padding: 1rem 2rem !important;}
+	.bv-mobile-navigation{display:block}
+	.manage-list-table{padding-top: 14.3rem;}
+	.no-client-div{padding-top: 15rem;}
+}
+li .bv-notification-dropdown li.bv-toggle-bg {background: #f8f8f8 }
+li .bv-notification-dropdown li span#bv-toggle-arrow {position: absolute;right: 2rem; top: 0.1rem; cursor: pointer;}
+li .bv-notification-dropdown li span#bv-toggle-arrow i {color: #999; font-size: 1.6rem}
+
+.bv-confirmation-notification {background-color:#444;position:absolute;left:30%;transform:translateX(-70%);top:15rem;z-index:9;cursor:default;box-shadow:0 5px 15px 0 #bfbfbf}
+.bv-confirmation-notification  li{max-width:32rem;background-color:#444;padding:0.5rem 1.5rem 1.8rem;margin-left:0;}
+.bv-confirmation-notification  li .bv-notification-date{color:#fff;text-align:right;font-size:1.5rem;display:block; margin-top: 0rem;}
+.bv-confirmation-notification  li .bv-notification-date .mdi-close{float:right;cursor:pointer; margin-top: 1.2rem;}
+.bv-confirmation-notification  li .bv-notification-desc{color:#fff;clear:both;line-height:1.5;font-size:1.2rem;margin-top:-0.5rem;}
+.bv-confirmation-notification  li .bv-confrmation-msg {color: #fff; font-weight: 400; line-height: 1.5; font-size: 1.2rem;}
+.bv-site-listing-progress-dropdown{display:none;background-color:#f9f9f9;position:absolute;left:70%;transform:translateX(-70%);top:3rem;z-index:9;cursor:default;box-shadow:0 5px 15px 0 #bfbfbf}
+.bv-site-listing-progress-dropdown ul{height:auto;overflow-y:auto; }
+.bv-site-listing-progress-dropdown li{min-width:30rem;background-color:#fff;padding:1.1rem 1.5rem 1.5rem;margin-left:0;border-top:1px solid #dbdbdb;text-align:center}
+.bv-site-listing-progress-dropdown li:last-child{margin-bottom:0}
+.bv-site-listing-progress-dropdown li:first-child{border-top:0}
+.bv-site-listing-progress-dropdown li .bv-notification-date{color:#979797;text-align:right;font-size:1.1rem;display:block; margin-top: 1rem;}
+.bv-site-listing-progress-dropdown li .bv-notification-date .mdi-close{float:right;cursor:pointer}
+.bv-site-listing-progress-dropdown li .bv-notification-title{display:block;position:relative;margin-top:-1.4rem}
+.bv-site-listing-progress-dropdown li .bv-notification-title i{color:#4a90e2;font-size:2.2rem;float:left;}
+.bv-site-listing-progress-dropdown li .bv-notification-title .bv-notification-name{padding-top:.25rem;font-weight:600;color:#252e31;text-align:left;}
+.bv-site-listing-progress-dropdown li .bv-notification-title .bv-notification-site-link{padding-top:0.8rem;font-size:1.2rem;color:#249182;text-align:left;}
+.bv-site-listing-progress-dropdown li .bv-notification-title .bv-notification-site-link a{color:#249182}
+.bv-site-listing-progress-dropdown li .bv-notification-desc{color:#252e31;clear:both;margin-top:0.5rem;text-align:left;line-height:1.5;font-size:1.2rem; margin-left: 3rem;}
+.bv-site-listing-progress-dropdown li .bv-notification-desc a {color:#249182}
+.bv-site-listing-progress-dropdown li .bv-notification-desc .notification-show-more {margin-left: -3rem;text-align: center; padding-top: 1rem; display: block;}
+.bv-site-listing-progress-dropdown li .bv-secondary-button{text-align:center;margin-left:0;color:#4a90e2;border-color:#4a90e2}
+.bv-site-listing-progress-dropdown li .bv-secondary-button:hover{background-color:#4a90e2}
+.bv-site-listing-progress-dropdown li.bv-notification-blue .bv-notification-title i{color:#4a90e2}
+.bv-site-listing-progress-dropdown li.bv-notification-blue .bv-secondary-button{color:#4a90e2;border-color:#4a90e2}
+.bv-site-listing-progress-dropdown li.bv-notification-blue .bv-secondary-button:hover{background-color:#4a90e2;color:#fff}
+.bv-site-listing-progress-dropdown li.bv-notification-orange .bv-notification-title i{color:#f5a623}
+.bv-site-listing-progress-dropdown li.bv-notification-orange .bv-secondary-button{color:#f5a623;border-color:#f5a623}
+.bv-site-listing-progress-dropdown li.bv-notification-orange .bv-secondary-button:hover{background-color:#f5a623;color:#fff}
+.bv-site-listing-progress-dropdown li.bv-notification-red .bv-notification-title i{color:#ff5166}
+.bv-site-listing-progress-dropdown li.bv-notification-green .bv-notification-title i{color:#249182}
+.bv-site-listing-progress-dropdown:before{content:'';position:absolute;width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:10px solid #f9f9f9;left:72%;top:-1rem;transform:translateX(-70%)}
+.bv-site-listing-progress-dropdown{display:none;background:#fff;border:1px solid #dbdbdb;position:absolute;left:20%;transform:translateX(-70%);top:3rem;z-index:9;cursor:default;min-width:240px;box-shadow:0 5px 15px 0 #bfbfbf}
+.bv-site-listing-progress-dropdown ul{border-bottom:1px solid #d8d8d8}
+.bv-site-listing-progress-dropdown ul li{color:#979797;font-size:1.4rem;display:block;margin-bottom: 1.4rem;}
+.bv-site-listing-progress-dropdown ul li a{color:#252e31;display:block;}
+.bv-site-listing-progress-dropdown ul li:last-child{margin-bottom:1.8rem; border-bottom: 0;}
+.bv-site-listing-progress-dropdown .bv-usage-status-bar {width:27rem;height:0.7rem;border-radius:2rem;position:relative;margin-top: 1.2rem; margin-bottom: 0.7rem;}
+
+
+.bv-site-listing-progress-dropdown .bv-progress-time-left {font-size: 1.1rem; float: left;}
+.bv-site-listing-progress-dropdown .bv-progress-percentage {font-size: 1.1rem; float: right;}
