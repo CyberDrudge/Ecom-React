@@ -1,7 +1,11 @@
+@import './style/address';
 @import './style/cart';
+@import './style/checkout';
 @import './style/common';
-@import './style/products';
+@import './style/header';
 @import './style/login';
+@import './style/notification';
+@import './style/products';
 
 .App {
   text-align: center;
