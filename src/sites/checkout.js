@@ -20,34 +20,35 @@ class Checkout extends React.Component {
 
 	loadCheckoutDetails() {
 		const { loading } = this.state
-		const { actions, history } = this.props
-		if (!loading) {
-			this.setState({loading: true, response: false})
-		}
+		const { actions, history, isLoggedIn} = this.props
 		let cart_id = JSON.parse(localStorage.getItem('cart_id'));
 		let billing_address_id = JSON.parse(localStorage.getItem('billing_address'));
 		let shipping_address_id = JSON.parse(localStorage.getItem('shipping_address'));
-		console.log(cart_id, billing_address_id, shipping_address_id);
-		if (shipping_address_id == null || billing_address_id == null){
-			console.log("Address Not Stored")
+		if (!loading) {
+			this.setState({loading: true, response: false})
+		}
+		if (!isLoggedIn) {
+			history.push({pathname: "/login"})
+			this.setState({loading: false})
+		} else if (shipping_address_id == null || billing_address_id == null) {
 			history.push({pathname: "/address"})
+			this.setState({loading: false})
+		} else {
+			let context = {
+				'cart_id': cart_id,
+				'billing_address_id': billing_address_id,
+				'shipping_address_id': shipping_address_id
+			}
+			actions.getCheckoutDetails(context)
+				.then(res => {
+					let response = res.data
+					this.setState({ loading: false,  checkoutDetails: response.data})
+				})
+				.catch(() => {
+					// this.setState({loading:false, error:<Error message="Failed to load sites. Please refresh this page or Contact us."/>})
+					this.setState({loading:false})
+				})
 		}
-		console.log(cart_id, billing_address_id, shipping_address_id);
-		let context = {
-			'cart_id': cart_id,
-			'billing_address_id': billing_address_id,
-			'shipping_address_id': shipping_address_id
-		}
-		actions.getCheckoutDetails(context)
-			.then(res => {
-				let response = res.data
-				console.log("Ckout", res)
-				this.setState({ loading: false,  checkoutDetails: response.data})
-			})
-			.catch(() => {
-				// this.setState({loading:false, error:<Error message="Failed to load sites. Please refresh this page or Contact us."/>})
-				this.setState({loading:false})
-			})
 	}
 
 	checkout() {
@@ -126,6 +127,12 @@ Checkout.propTypes = {
 
 const CheckoutWithRouter = withRouter(Checkout)
 
+const mapStateToProps = (state) => {
+	return {
+		isLoggedIn: state.isLoggedIn
+	}
+}
+
 const mapDispatchToProps = (dispatch) => {
 	return {actions: bindActionCreators(actionCreators, dispatch)}
 }
@@ -134,4 +141,4 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 	return Object.assign({}, ownProps, stateProps, dispatchProps)
 }
 
-export default connect(null, mapDispatchToProps, mergeProps)(CheckoutWithRouter)
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(CheckoutWithRouter)
