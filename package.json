@@ -9,7 +9,9 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "express": "^4.17.1",
     "immutable": "^4.0.0-rc.12",
+    "interpolate-html-plugin": "^3.0.0",
     "jquery": "^3.5.1",
     "material-design-icons": "^3.0.1",
     "moment": "^2.29.1",
@@ -49,5 +51,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8000"
+  "proxy": "https://cyber-ecom.herokuapp.com",
+  "homepage": "https://cyber-ecom.herokuapp.com/"
 }

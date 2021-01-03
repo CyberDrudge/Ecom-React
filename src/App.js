@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, BrowserRouter as Router, Redirect, withRouter } from 'react-router-dom'
+import { Route, HashRouter as Router, Redirect, withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux'
 import './App.css'

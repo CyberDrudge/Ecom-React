@@ -8,7 +8,7 @@ import Popper from 'popper.js';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import reducer from './app/reducer'
@@ -21,9 +21,9 @@ ReactDOM.render(
 	<React.StrictMode>
 	<link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css" />
 		<Provider store={store}>
-			<BrowserRouter>
+			<HashRouter>
 				<App />
-			</BrowserRouter>
+			</HashRouter>
 			</Provider>
 	</React.StrictMode>,
 	document.getElementById('root')
