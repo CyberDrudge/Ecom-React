@@ -13,8 +13,5 @@ app.get('/*', (req, res) => {
 });
 // Start the app by listening on the default Heroku port
 // app.listen(port);
-app.listen(port, () => {
-   console.log('Server is up!');
-   console.log(publicPath)
-});
+app.listen(port);
 
