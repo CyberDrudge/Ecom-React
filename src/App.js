@@ -18,7 +18,7 @@ class App extends React.Component {
 	componentDidMount(){
 		const { actions } = this.props
 		actions.autoLogin()
-		this.loadNotifications()
+		// this.loadNotifications()
 	}
 
 	loadNotifications() {
