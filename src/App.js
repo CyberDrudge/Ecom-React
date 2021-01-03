@@ -10,7 +10,7 @@ import * as actionCreators from './app/actioncreators'
 class App extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {loading: true, notifications:[]}
+		this.state = {loading: false, notifications:[]}
 		this.refresh = this.refresh.bind(this)
 		this.loadNotifications = this.loadNotifications.bind(this)
 	}
@@ -44,7 +44,6 @@ class App extends React.Component {
 				actions.setNotifications(res.data)
 			})
 			.catch((res) => {
-				console.log(res)
 				console.log('Connection Lost')
 			})
 	}

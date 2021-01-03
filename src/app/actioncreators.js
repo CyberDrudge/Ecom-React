@@ -134,7 +134,7 @@ export function setNotifications(notifications) {
 
 export function logIn(params = {}) {
 	return function(dispatch){
-		return fetch(`http://localhost:8000/login`, {
+		return fetch(`https://cyber-ecom.herokuapp.com/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -160,7 +160,7 @@ export function logOut(params = {}) {
 }
 
 export const signUserUp = (userInfo) => dispatch => {
-	fetch(`http://localhost:4000/users`, {
+	fetch(`http://localhost:8000/users`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
