@@ -5,6 +5,10 @@ import './../App.css';
 
 class Home extends React.Component {
 	render() {
+		const { history } = this.props
+		history.push({
+			pathname: "products"
+		})
 		return (
 			<div className="App">
 				<header className="App-header">
