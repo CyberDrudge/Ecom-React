@@ -150,7 +150,7 @@ export function logIn(params = {}) {
 				}
 				return response
 			})
-}
+	}
 }
 
 export function logOut(params = {}) {
@@ -159,20 +159,17 @@ export function logOut(params = {}) {
 	}
 }
 
-export const signUserUp = (userInfo) => dispatch => {
-	fetch(`http://localhost:8000/users`, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			"Accept": "application/json"
-		},
-		body: JSON.stringify(userInfo)
-	})
-		.then(res => res.json())
-		.then(data => {
-			localStorage.setItem("token", data.token)
-			dispatch({type: action.LOG_IN, data: ""})
+export function signUserUp(params = {}) {
+	return function(dispatch){
+		return fetch(`http://localhost:8000/register`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"Accept": "application/json"
+			},
+			body: JSON.stringify(params)
 		})
+	}
 }
 
 export function autoLogin() {

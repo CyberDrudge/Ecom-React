@@ -32,7 +32,7 @@ class ProductCard extends React.Component {
 		let cartItems = (cart && cart.toJS().products) || []
 		let isProductIncart = cartItems.find(obj => obj.title === product.title);
 		return (<div className="col">
-			<div className="product-card rounded my-1">
+			<div className="product-card rounded mb-20">
 				<div className="card-body rounded">
 					<h5 className="card-title"> { product.title } </h5>
 					
