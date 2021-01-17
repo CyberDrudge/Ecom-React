@@ -55,6 +55,10 @@ body {
 	margin-right: 30px;
 }
 
+.mb-20 {
+	margin-bottom: 20px;
+}
+
 .absolute-position {
   position: absolute;
 }

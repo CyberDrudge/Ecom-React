@@ -9,8 +9,8 @@ import Loading from './loader'
 import Error from './error'
 import ProductCard from '../sites/product-card'
 
-const PER_PAGE = 5
-const LIMIT = 50
+const PER_PAGE = 12
+const LIMIT = 12
 	
 class ProductList extends React.Component {
 	constructor(props) {
