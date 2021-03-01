@@ -61,7 +61,7 @@ export function getCart(params = {}) {
 	}
 }
 
-export function addProductToCart(params={}) {
+export function updateCart(params={}) {
 	return function(dispatch){
 		let cart_id = localStorage.getItem('cart_id')
 		params['cart_id'] = cart_id

@@ -7,7 +7,7 @@ import Cart from '../sites/cart'
 import Checkout from '../sites/checkout'
 import Home from './home'
 import Login from './login'
-import ProductList from './productlist'
+import ProductList from '../sites/productlist'
 import Register from './register'
 
 class Main extends React.PureComponent {

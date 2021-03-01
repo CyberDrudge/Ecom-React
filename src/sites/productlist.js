@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import * as actionCreators from './../app/actioncreators'
-import Loading from './loader'
-import Error from './error'
-import ProductCard from '../sites/product-card'
+import Loading from '../app/loader'
+import Error from '../app/error'
+import ProductCard from './product-card'
 
 const PER_PAGE = 12
 const LIMIT = 12

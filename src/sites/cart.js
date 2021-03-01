@@ -54,7 +54,7 @@ class Cart extends React.Component {
 
 	displayCartItems() {
 		const { cart } = this.props
-		let cartItems = cart.toJS().products
+		let cartItems = cart.toJS().items
 		let rows = []
 		cartItems.forEach((item, index) => {
 			rows.push(<tr className='cart-product' key={index}>
