@@ -51,12 +51,24 @@ body {
 	font-size: 2.5rem;
 }
 
+.mt-10 {
+	margin-top: 10px;
+}
+
+.ml-20 {
+	margin-left: 20px;
+}
+
 .mr-30 {
 	margin-right: 30px;
 }
 
 .mb-20 {
 	margin-bottom: 20px;
+}
+
+.mauto {
+	margin: auto;
 }
 
 .absolute-position {
