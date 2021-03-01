@@ -30,21 +30,20 @@ class ProductCard extends React.Component {
 		const { loading } = this.state
 		const { cart, product } = this.props
 		let cartItems = (cart && cart.toJS().products) || []
-		let isProductIncart = cartItems.find(obj => obj.title === product.title);
-		return (<div className="col">
-			<div className="product-card rounded mb-20">
-				<div className="card-body rounded">
-					<h5 className="card-title"> { product.title } </h5>
-					
-					<p className="card-text"> { product.description } </p>
-					<button className="btn btn-success" onClick={()=>{this.addProductToCart(product.id)}}>	
-						{ loading ? <span className="mdi mdi-circle-outline mdi-spin" ></span> : <span>
-							{ isProductIncart ? "Remove" : "Add"}
-						</span> }
+		let isProductIncart = cartItems.find(obj => obj.title === product.title)
+		return (<div className="col-md-4" key={product.id}>
+	        <div className="product-card rounded mb-20 text-center">
+				<img src={`http://localhost:8000${product.image}`} className="product-image" alt="No Image Available" />
+	            <p className="product-title">{product.title}</p>
+	            <div className="product-price">
+					<b>{product.price}</b>
+					<button className="btn btn-primary ml-20" onClick={()=>{this.addProductToCart(product.id)}}>	
+						{ loading ? <span className="mdi mdi-circle-outline mdi-spin" ></span> : <span className="mdi mdi-cart-plus"></span> }
 					</button>
 				</div>
-			</div>
+	        </div>
 		</div>)
+
 	}
 }
 

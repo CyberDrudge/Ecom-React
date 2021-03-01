@@ -5,13 +5,17 @@ import PropTypes from 'prop-types'
 import { Link, withRouter } from 'react-router-dom'
 import * as actionCreators from './../app/actioncreators'
 import Loading from '../app/loader'
+import PaymentForm from './payment'
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import {injectStripe} from '@stripe/react-stripe-js';
 
 class Checkout extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {loading: true, checkoutDetails: {}, isCheckoutDone: false}
 		this.loadCheckoutDetails = this.loadCheckoutDetails.bind(this)
-		this.checkout = this.checkout.bind(this)
+		this.purchase = this.purchase.bind(this)
 	}
 
 	componentDidMount() {
@@ -22,8 +26,8 @@ class Checkout extends React.Component {
 		const { loading } = this.state
 		const { actions, history, isLoggedIn} = this.props
 		let cart_id = JSON.parse(localStorage.getItem('cart_id'));
-		let billing_address_id = JSON.parse(localStorage.getItem('billing_address'));
-		let shipping_address_id = JSON.parse(localStorage.getItem('shipping_address'));
+		let billing_address_id = JSON.parse(localStorage.getItem('billing_address') || "null");
+		let shipping_address_id = JSON.parse(localStorage.getItem('shipping_address') || "null");
 		if (!loading) {
 			this.setState({loading: true, response: false})
 		}
@@ -51,10 +55,38 @@ class Checkout extends React.Component {
 		}
 	}
 
-	checkout() {
-		const { actions } = this.props
-		this.setState({isCheckoutDone: true})
-		actions.checkout()
+	purchase() {
+		const { loading } = this.state
+		const { actions, history, isLoggedIn} = this.props
+		let cart_id = JSON.parse(localStorage.getItem('cart_id'));
+		let billing_address_id = JSON.parse(localStorage.getItem('billing_address') || "null");
+		let shipping_address_id = JSON.parse(localStorage.getItem('shipping_address') || "null");
+		if (!loading) {
+			this.setState({loading: true, response: false})
+		}
+		if (!isLoggedIn) {
+			history.push({pathname: "/login"})
+			this.setState({loading: false})
+		} else if (shipping_address_id == null || billing_address_id == null) {
+			history.push({pathname: "/address"})
+			this.setState({loading: false})
+		} else {
+			let context = {
+				'cart_id': cart_id,
+				'billing_address_id': billing_address_id,
+				'shipping_address_id': shipping_address_id
+			}
+			actions.placeOrder(context)
+				.then(res => {
+					let response = res.data
+					this.setState({ loading: false,  isCheckoutDone: true})
+					// actions.checkout()
+				})
+				.catch(() => {
+					// this.setState({loading:false, error:<Error message="Failed to load sites. Please refresh this page or Contact us."/>})
+					this.setState({loading:false})
+				})
+		}
 	}
 
 	displayCheckoutDone() {
@@ -63,6 +95,7 @@ class Checkout extends React.Component {
 				<h1 class="display-1">Thank you for ordering!!!</h1>
 			</div>
 		</div>)
+		// return PaymentForm()
 	}
 
 	displayCartItems() {
@@ -78,6 +111,7 @@ class Checkout extends React.Component {
 	}
 	displayCheckout() {
 		const { checkoutDetails } = this.state
+		const { actions } = this.props
 		return (<div>
 			<div class="container">
 				<div class="info-2">Finalize Checkout</div>
@@ -104,7 +138,8 @@ class Checkout extends React.Component {
 					<div>Order Total: </div>
 					<div class="checkout-value">{ checkoutDetails.total }</div>
 				</div>
-				<button class='btn btn-primary' onClick={this.checkout}>Checkout</button>
+				<PaymentForm placeOrder={actions.placeOrder} />
+				{false && <button class='btn btn-primary' onClick={this.purchase}>Purchase</button> }
 			</div>
 		</div>)
 	}

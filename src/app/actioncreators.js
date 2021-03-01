@@ -8,7 +8,7 @@ const requestApi = (params) => {
 	// if (element) {
 	// 	token = element.content
 	// }
-	const urlRoot = (params.urlRoot || "https://cyber-ecom.herokuapp.com")
+	const urlRoot = (params.urlRoot || "http://localhost:8000")
 	const method = params.method
 	const url = `${urlRoot}${params.path}`
 	const responseType = (params.responseType || 'json')
@@ -90,6 +90,16 @@ export function getCheckoutDetails(params={}) {
 	}
 }
 
+export function placeOrder(params={}) {
+	return function(dispatch) {
+		return requestApi({
+			method : 'POST',
+			path : '/orders/place-order',
+			data : params
+		})
+	}
+}
+
 export function getAddresses(params={}) {
 	return function(dispatch) {
 		return requestApi({
@@ -106,6 +116,16 @@ export function addAddress(params={}) {
 			method : 'POST',
 			path : '/checkout/address/create/',
 			data : params
+		})
+	}
+}
+
+export function applyCoupon(params={}) {
+	return function(dispatch) {
+		return requestApi({
+			method : 'GET',
+			path : '/coupon/',
+			params : params
 		})
 	}
 }
@@ -134,7 +154,7 @@ export function setNotifications(notifications) {
 
 export function logIn(params = {}) {
 	return function(dispatch){
-		return fetch(`https://cyber-ecom.herokuapp.com/login`, {
+		return fetch(`http://localhost:8000/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
