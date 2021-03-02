@@ -122,10 +122,20 @@ export function addAddress(params={}) {
 
 export function applyCoupon(params={}) {
 	return function(dispatch) {
+		let cart_id = localStorage.getItem('cart_id')
+		params['cart_id'] = cart_id
 		return requestApi({
 			method : 'GET',
 			path : '/coupon/',
 			params : params
+		})
+		.then(res => {
+			let response = res.data
+			let cart = response.data
+			if (response.type == "success") {
+				dispatch({type: action.SET_CART, data: cart})
+				return response
+			}
 		})
 	}
 }

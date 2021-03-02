@@ -66,9 +66,10 @@ export default function(state = initialState(), action) {
 			let cart = action.getIn(['data'])
 			let cart_id = action.getIn(['data', 'id'])
 			localStorage.setItem("cart_id", cart_id)
-			return Object.assign({}, state, {
-				cart: cart,
-			})
+			// return Object.assign({}, state, {
+			// 	cart: cart,
+			// })
+			return { ...state, cart: cart };
 		case actionName.SET_NOTIFICATIONS:
 			let notifications = action.getIn(['data'])
 			return Object.assign({}, state, {

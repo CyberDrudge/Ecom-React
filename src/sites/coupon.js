@@ -10,7 +10,7 @@ import Loading from '../app/loader'
 class Coupon extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {loading: true, isCartEmpty: true, couponCode: ""}
+		this.state = {loading: false, couponCode: ""}
 	}
 
 	handleOnChange = (e) => {
@@ -23,7 +23,6 @@ class Coupon extends React.Component {
 	onSubmit = (e) => {
 		e.preventDefault()
 		const { actions } = this.props
-		console.log(this.state.couponCode)
 		actions.applyCoupon({code: this.state.couponCode})
 			.then(res => {
 				if (res.type == "success") {
@@ -38,12 +37,12 @@ class Coupon extends React.Component {
 	render() {
 		const { loading, isCartEmpty } = this.state
 		return (
-			<div className="col-sm-4">
+			<div>
 				<form className="p-2" onSubmit={this.onSubmit}>
-					<div className="input-group">
-						<input className="form-control form-input" id="name" formControlName="name" value={this.state.couponCode} name="couponCode" onChange={this.handleOnChange}/>
+					<div className="input-group coupon">
+						<input className="form-control form-input" id="name" formControlName="name" placeholder="Add Coupon" value={this.state.couponCode} name="couponCode" onChange={this.handleOnChange}/>
 						<div className="input-group-append">
-						<button className="btn btn-secondary btn-md waves-effect mt-10" type="submit">Redeem</button>
+						<button className="btn btn-secondary btn-md waves-effect" type="submit">Redeem</button>
 						</div>
 					</div>
 				</form>

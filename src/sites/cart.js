@@ -14,7 +14,7 @@ import ItemQuantity from './item-quantity'
 class Cart extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {loading: true, isCartEmpty: true}
+		this.state = {loading: true}
 		this.loadCart = this.loadCart.bind(this)
 	}
 
@@ -24,28 +24,16 @@ class Cart extends React.Component {
 
 	loadCart() {
 		const { loading } = this.state
-		const { actions, isLoggedIn } = this.props
+		const { actions } = this.props
 		if (!loading) {
 			this.setState({loading: true, response: false})
 		}
 		actions.getCart()
 			.then(res => {
-				this.setState({ isCartEmpty: (res.data.products.length === 0), loading: false })
+				this.setState({ loading: false })
 			})
 			.catch(() => {
 				this.setState({loading:false})
-			})
-	}
-
-	removeProductFromCart(product_id) {
-		const { actions } = this.props
-		const { loading } = this.state
-		if (!loading) {
-			this.setState({loading: true, response: false})
-		}
-		actions.addProductToCart({product_id: product_id})
-			.then(res => {
-				this.setState({loading: false})
 			})
 	}
 
@@ -61,6 +49,7 @@ class Cart extends React.Component {
 		let cartItems = cart.toJS().items
 		let rows = []
 		cartItems.forEach((item, index) => {
+			let price = item.product.discount_price || item.product.price
 			rows.push(<tr className='cart-product' key={index}>
 				<th className="text-center" scope="row">{ index+1 }.</th>
 				<td className="align-left">
@@ -69,7 +58,7 @@ class Cart extends React.Component {
 				<td className="pr-20">
 					<ItemQuantity item={item}/>
 				</td>
-				<td>{ item.quantity * item.product.price }</td>
+				<td>{ item.quantity * price }</td>
 			</tr>)
 		})
 		return rows
@@ -103,7 +92,7 @@ class Cart extends React.Component {
 							<td className='cart-total'>{ subtotal }</td>
 						</tr>
 						<tr>
-							<td>{ deliveryCharge === 0 && <div className="free-delivery-label">Free Delivery</div> }</td>
+							<td>{ deliveryCharge == 0 && <div className="free-delivery-label">Free Delivery</div> }</td>
 							<td colSpan={2}><div className="float-right pr-20"><b> + Delivery Charge:</b></div></td>
 							<td className='cart-total'>{ deliveryCharge }</td>
 						</tr>
@@ -126,7 +115,9 @@ class Cart extends React.Component {
 	}
 
 	render() {
-		const { loading, isCartEmpty } = this.state
+		const { loading } = this.state
+		const { cart } = this.props
+		let isCartEmpty = cart && cart.toJS().items.length === 0
 		return (
 			<div className="container">
 				{ loading ? <Loading /> : <div className="my-2">
@@ -145,8 +136,7 @@ const CartWithRouter = withRouter(Cart)
 
 const mapStateToProps = (state) => {
 	return {
-		cart: state.cart,
-		isLoggedIn: state.isLoggedIn
+		cart: state.cart
 	}
 }
 

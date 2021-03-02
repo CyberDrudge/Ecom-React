@@ -7,6 +7,7 @@ import Cart from '../sites/cart'
 import Checkout from '../sites/checkout'
 import Home from './home'
 import Login from './login'
+import OrderPlaced from '../sites/order-placed'
 import ProductList from '../sites/productlist'
 import Register from './register'
 
@@ -20,6 +21,7 @@ class Main extends React.PureComponent {
 			<Route path={`/cart`} component={Cart}/>
 			<Route path={`/checkout`} component={Checkout}/>
 			<Route path={`/login`} component={Login}/>
+			<Route path={`/order-placed`} component={OrderPlaced}/>
 			<Route path={`/products`} component={ProductList}/>
 			<Route path={`/register`} component={Register}/>
 		</Switch>

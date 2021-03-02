@@ -30,19 +30,22 @@ class ProductList extends React.Component {
 		if (!loading) {
 			this.setState({loading: true, response: false})
 		}
-		actions.getProductList({offset: page, limit: LIMIT, last_id: last_id})
-			.then(res => {
-				let products = res.data.data
-				let fetch_id = res.data.data.length ? res.data.data[0].id : last_id
-				this.setState({
-					products: products,
-					count: res.data.count,
-					// error: res.data.errorMessage && <Error message={res.data.errorMessage}/>,
-					loading: false, last_id: fetch_id})
+		Promise.all([
+            actions.getProductList({offset: page, limit: LIMIT, last_id: last_id}),
+            actions.getCart()
+        ]).then(([res_getProductList, res_getCart]) => {
+			let products = res_getProductList.data.data
+			let fetch_id = res_getProductList.data.data.length ? res_getProductList.data.data[0].id : last_id
+			this.setState({
+				products: products,
+				count: res_getProductList.data.count,
+				// error: res.data.errorMessage && <Error message={res.data.errorMessage}/>,
+				loading: false, last_id: fetch_id
 			})
-			.catch(() => {
-				this.setState({loading:false, error:<Error />})
-			})
+        }).catch(res => {
+        	this.setState({loading:false, error:<Error />})
+        })
+
 	}
 
 	products() {

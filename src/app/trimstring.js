@@ -37,7 +37,7 @@ TrimString.propTypes = {
 	string: PropTypes.string.isRequired,
 	placement: PropTypes.string,
 	title: PropTypes.string,
-	length: PropTypes.string,
+	length: PropTypes.number,
 	tooltip: PropTypes.bool
 }
 

@@ -5,19 +5,16 @@ import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, injectStripe, useElements, useStripe} from '@stripe/react-stripe-js';
 import * as actionCreators from './../app/actioncreators'
 import { request } from 'axios'
-
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Loading from '../app/loader'
-
 import { useDispatch } from "react-redux";
-// const stripePromise = loadStripe('pk_test_JJ1eMdKN0Hp4UFJ6kWXWO4ix00jtXzq5XG');
 
 const PaymentForm = (props) => {
 	return (<div>
 		<Elements stripe={stripePromise}>
-				 <CheckoutFormZZ  props={props}/>
+			<CheckoutFormZZ  props={props}/>
 		</Elements>
 	</div>)
 }
@@ -95,7 +92,6 @@ const CheckoutForm = (props) => {
 		if (cardComplete) {
 			setProcessing(true);
 		}
-
 		let cart_id = JSON.parse(localStorage.getItem('cart_id'))
 		let billing_address_id = JSON.parse(localStorage.getItem('billing_address') || "null")
 		let shipping_address_id = JSON.parse(localStorage.getItem('shipping_address') || "null")
@@ -111,15 +107,13 @@ const CheckoutForm = (props) => {
 					'shipping_address_id': shipping_address_id,
 					'token': result.token
 			}
-			console.log(context)
-			console.log(props.props)
-			// props.props.placeOrder({})
 			props.props.placeOrder(context)
 					.then(res => {
 							let response = res.data
 							// this.setState({ loading: false,  isCheckoutDone: true})
 							console.log("SSSSS")
 							setProcessing(false)
+							props.props.history.push({pathname: "/order-placed"})
 							// actions.checkout()
 					})
 					.catch(() => {

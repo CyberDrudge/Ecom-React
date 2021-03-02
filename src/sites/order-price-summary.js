@@ -17,29 +17,31 @@ class OrderPriceSummary extends React.Component {
 	render() {
 		const { loading, isCartEmpty } = this.state
 		const { actions, cart } = this.props
-		let order = {}
-		let code = "CODE"
-		let order_item = ""
-		let count = 3
-		count = count
-		return (<div class="col-sm-4 mb-4">
-		    <ul class="list-group mb-3 z-depth-1">
-			    <li class="list-group-item d-flex justify-content-between lh-condensed">
+		let order = cart.toJS()
+		return (<div className="col-sm-4 mb-4">
+		    <ul className="list-group mb-3 z-depth-1">
+			    <li className="list-group-item d-flex justify-content-between lh-condensed">
 			        <div>
-			        <h6 class="my-0">{ order_item } x { order_item}</h6>
+			        <h6 className="my-0">Cart Total</h6>
 			        </div>
-			        <span class="text-muted">${ order_item }</span>
+			        <span className="text-muted">{ order.subtotal }</span>
 			    </li>
-			    <li class="list-group-item d-flex justify-content-between bg-light">
-			        <div class="text-success">
-			        <h6 class="my-0">Promo code</h6>
-			        <small>{ order.coupon }</small>
+			    <li className="list-group-item d-flex justify-content-between lh-condensed">
+			        <div>
+			        <h6 className="my-0">Delivery Charge</h6>
 			        </div>
-			        <span class="text-success">-${ order.amount }</span>
+			        <span className="text-muted">+{ order.delivery_charge }</span>
 			    </li>
-			    <li class="list-group-item d-flex justify-content-between">
-			        <span>Total (USD)</span>
-			        <strong>${ order.get_total }</strong>
+			    {order.coupon && <li className="list-group-item d-flex justify-content-between bg-light">
+			        <div className="text-success">
+			        <h6 className="my-0">Promo code</h6>
+			        <small>{ order.coupon.code }</small>
+			        </div>
+			        <span className="text-success">-{ order.coupon.amount || 0 }</span>
+			    </li>}
+			    <li className="list-group-item d-flex justify-content-between">
+			        <span>Total</span>
+			        <strong>{ order.total }</strong>
 			    </li>
 		    </ul>
 			<Coupon actions={actions} />

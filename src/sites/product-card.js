@@ -40,10 +40,6 @@ class ProductCard extends React.Component {
 		this.updateCart(product_id, ORDER_ITEM_ACTION["ADD"])
 	}
 
-	removeProductFromCart = (product_id) => {
-		this.updateCart(product_id, ORDER_ITEM_ACTION["REMOVE"])
-	}
-
 	render() {
 		const { loading } = this.state
 		const { cart, product } = this.props
@@ -71,7 +67,6 @@ class ProductCard extends React.Component {
 				</div>
 			</div>
 		</div>)
-
 	}
 }
 
