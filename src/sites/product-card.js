@@ -5,6 +5,8 @@ import * as actionCreators from './../app/actioncreators'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import Loading from '../app/loader'
+import TrimString from '../app/trimstring'
+import ItemQuantity from './item-quantity'
 
 const ORDER_ITEM_ACTION = {
 	'ADD': 1,
@@ -46,7 +48,7 @@ class ProductCard extends React.Component {
 		const { loading } = this.state
 		const { cart, product } = this.props
 		let cartItems = (cart && cart.toJS().items) || []
-		let item = cartItems.find(obj => obj.product === product.id)
+		let item = cartItems.find(obj => obj.product.id === product.id)
 		let imageSrc = `http://localhost:8000${product.image}`
 		let label = product.label && LABEL[product.label]
 		let main_price, sub_price
@@ -60,18 +62,10 @@ class ProductCard extends React.Component {
 			{label && <div className="product-label">{label}</div>}
 			<div className="product-card rounded mb-20 text-center">
 				<img src={imageSrc} className="product-image" alt="No Image Available" />
-				<p className="product-title">{product.title}</p>
+				<p className="product-title"><TrimString string={product.title} /></p>
 				<div className="product-price">
 					<span className="mr-20"><b className="font18">{main_price}</b><strike className="font14 ml-05">{sub_price}</strike></span>
-					{ item ? <div className="product-quantity-counter">
-						<button className="btn btn-primary product-add" onClick={()=>{this.removeProductFromCart(product.id)}}>	
-							{ loading ? <span className="mdi mdi-circle-outline mdi-spin" ></span> : <span className="mdi mdi-minus"></span>}
-						</button>
-						<span>{item.quantity}</span>
-						<button className="btn btn-primary product-add" onClick={()=>{this.addProductToCart(product.id)}}>	
-							{ loading ? <span className="mdi mdi-circle-outline mdi-spin" ></span> : <span className="mdi mdi-plus"></span>}
-						</button>
-					</div> : <button className="btn btn-primary product-add" onClick={()=>{this.addProductToCart(product.id)}}>
+					{ item ? <ItemQuantity item={item}/> : <button className="btn btn-primary product-add" onClick={()=>{this.addProductToCart(product.id)}}>
 						{ loading ? <span className="mdi mdi-circle-outline mdi-spin" ></span> : <span className="mdi mdi-cart-plus"></span>}
 					</button>}
 				</div>

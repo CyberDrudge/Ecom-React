@@ -78,20 +78,41 @@ body {
 	margin-bottom: 20px;
 }
 
+.my-10 {
+	margin: 10px 0;
+}
+
 .mauto {
 	margin: auto;
+}
+
+.m-0 {
+	margin: 0;
+}
+
+.p-0 {
+	padding: 0;
+}
+
+.px-10 {
+	padding: 0 10px;
+}
+
+.pr-20 {
+	padding-right: 20px;
 }
 
 .absolute-position {
   position: absolute;
 }
 
+.relative-position {
+  position: relative;
+}
+
 .bv-affix-wrapper {
   height: 51px;
   position: relative;
-}
-.p-0 {
-	padding: 0;
 }
 .custom-pagination {
 	display: flex;
@@ -132,4 +153,8 @@ body {
 }
 .w-100 {
 	width: 100%
+}
+
+.align-left {
+	text-align: left;
 }

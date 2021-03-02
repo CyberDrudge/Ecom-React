@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom'
 import * as actionCreators from './../app/actioncreators'
 import Loading from '../app/loader'
 import Coupon from './coupon'
+import TrimString from '../app/trimstring'
+import OrderPriceSummary from './order-price-summary'
+import ItemQuantity from './item-quantity'
 
 class Cart extends React.Component {
 	constructor(props) {
@@ -54,16 +57,19 @@ class Cart extends React.Component {
 
 	displayCartItems() {
 		const { cart } = this.props
+		const { loading } = this.state
 		let cartItems = cart.toJS().items
 		let rows = []
 		cartItems.forEach((item, index) => {
 			rows.push(<tr className='cart-product' key={index}>
 				<th className="text-center" scope="row">{ index+1 }.</th>
-				<td>
-					<a className="product-name" href="{{ product.get_absolute_url }}">{ item.title }</a>
-					<button className="btn remove mr-30" onClick={()=>{this.removeProductFromCart(item.id)}}>Remove</button>
+				<td className="align-left">
+					<a className="product-name" href="{{ product.get_absolute_url }}"><TrimString string={item.product.title} length={57}/></a>
 				</td>
-				<td>{ item.price }</td>
+				<td className="pr-20">
+					<ItemQuantity item={item}/>
+				</td>
+				<td>{ item.quantity * item.product.price }</td>
 			</tr>)
 		})
 		return rows
@@ -73,38 +79,49 @@ class Cart extends React.Component {
 		const { cart, actions } = this.props
 		let subtotal = cart.toJS().subtotal
 		let total = cart.toJS().total
-		let couponform = ""
+		let deliveryCharge = cart.toJS().delivery_charge
 		return (<div className="row cart-container w-100">
-			<div className="col-sm-8">
+			<div className="ml-20">
+			    <h4 class="d-flex justify-content-between align-items-center mb-3">
+				    <span class="text-muted">Your Cart</span>
+			    </h4>
+		    </div>
+			<div className="col-sm-12">
 				<table className="table cart-table">
 					<thead>
 						<tr>
 							<th className="text-center" scope="col">#</th>
 							<th scope="col">Product Name</th>
+							<th className="price" scope="col">Quantity</th>
 							<th className="price" scope="col">Price</th>
 						</tr>
 					</thead>
 					<tbody className='cart-body'>
 						{ this.displayCartItems() }
 						<tr>
-							<td colSpan={2}><div className="float-right mr-30"><b>Subtotal:</b></div></td>
+							<td colSpan={3}><div className="float-right pr-20"><b>Subtotal:</b></div></td>
 							<td className='cart-total'>{ subtotal }</td>
 						</tr>
 						<tr>
-							<td colSpan={2}><div className="float-right mr-30"><b>Total:</b></div></td>
+							<td>{ deliveryCharge === 0 && <div className="free-delivery-label">Free Delivery</div> }</td>
+							<td colSpan={2}><div className="float-right pr-20"><b> + Delivery Charge:</b></div></td>
+							<td className='cart-total'>{ deliveryCharge }</td>
+						</tr>
+						<tr>
+							<td colSpan={3}><div className="float-right pr-20"><b>Total:</b></div></td>
 							<td className='cart-total'>{ total }</td>
 						</tr>
 						<tr>
-							<td colSpan={2}>
+							<td colSpan={3}>
 								<div className="float-right">
 									<Link className="btn btn-success" to="/checkout">Checkout</Link>
 								</div>
 							</td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<Coupon actions={actions} />
 		</div>)
 	}
 
