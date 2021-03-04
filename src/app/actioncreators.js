@@ -8,7 +8,7 @@ const requestApi = (params) => {
 	// if (element) {
 	// 	token = element.content
 	// }
-	const urlRoot = (params.urlRoot || "http://localhost:8000")
+	const urlRoot = (params.urlRoot || "https://cyber-ecom.herokuapp.com")
 	const method = params.method
 	const url = `${urlRoot}${params.path}`
 	const responseType = (params.responseType || 'json')
