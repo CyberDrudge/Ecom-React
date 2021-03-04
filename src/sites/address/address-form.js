@@ -25,7 +25,6 @@ class AddressForm extends React.Component {
 		actions.addAddress(this.state)
 			.then(res => {
 				if (res.type == "success") {
-					console.log(res)
 					this.setState({loading: false})
 					history.push({pathname: "/"})
 				} else {
@@ -35,39 +34,53 @@ class AddressForm extends React.Component {
 	}
 
 	displayAddressForm() {
-		return (<form onSubmit={this.onSubmit} class="container">
-			<div class="info-2-5">Add Your Address</div>
-			<div class="secondary">
-				<div class="required-field form-item">
-					<label>Name: </label>
-					<input class="form-control form-input" id="name" formControlName="name" value={this.state.name} name="name" onChange={this.handleOnChange}/>
+		return (<form onSubmit={this.onSubmit} className="container">
+			<div className="info-2-5 mb-20">Add Your Address</div>
+			<div className="secondary">
+				<div className="required-field form-group row">
+					<label for="name" className="col-sm-3 col-form-label">Name: </label>
+					<div className="col-sm-9">
+						<input className="form-control form-input" id="name" formControlName="name" value={this.state.name} name="name" onChange={this.handleOnChange}/>
+					</div>
 				</div>
-				<div class="required-field form-item">
-					<label class="cus-form-label">Address Line 1:</label>
-					<input class="form-control form-input" id="address_line1" formControlName="address_line1" value={this.state.address_line1} name="address_line1" onChange={this.handleOnChange}/>
+				<div className="required-field form-group row">
+					<label for="address_line1" className="col-sm-3 col-form-label">Address Line 1:</label>
+					<div className="col-sm-9">
+						<input className="form-control form-input" id="address_line1" formControlName="address_line1" value={this.state.address_line1} name="address_line1" onChange={this.handleOnChange}/>
+					</div>
 				</div>
-				<div class="form-item">
-					<label class="cus-form-label">Address Line 2:</label>
-					<input class="form-control form-input" id="address_line2" formControlName="address_line2" value={this.state.address_line2} name="address_line2" onChange={this.handleOnChange}/>
+				<div className="form-group row">
+					<label for="address_line2" className="col-sm-3 col-form-label">Address Line 2:</label>
+					<div className="col-sm-9">
+						<input className="form-control form-input" id="address_line2" formControlName="address_line2" value={this.state.address_line2} name="address_line2" onChange={this.handleOnChange}/>
+					</div>
 				</div>
-				<div class="form-item">
-					<label class="cus-form-label">City:</label>
-					<input class="form-control form-input" id="city" formControlName="city" value={this.state.city} name="city" onChange={this.handleOnChange}/>
+				<div className="form-group row">
+					<label for="city" className="col-sm-3 col-form-label">City:</label>
+					<div className="col-sm-9">
+						<input className="form-control form-input" id="city" formControlName="city" value={this.state.city} name="city" onChange={this.handleOnChange}/>
+					</div>
 				</div>
-				<div class="form-item">
-					<label class="cus-form-label">State:</label>
-					<input class="form-control form-input" id="state" formControlName="state" value={this.state.state} name="state" onChange={this.handleOnChange}/>
+				<div className="form-group row">
+					<label for="state" className="col-sm-3 col-form-label">State:</label>
+					<div className="col-sm-9">
+						<input className="form-control form-input" id="state" formControlName="state" value={this.state.state} name="state" onChange={this.handleOnChange}/>
+					</div>
 				</div>
-				<div class="form-item">
-					<label class="cus-form-label">Country:</label>
-					<input class="form-control form-input" id="country" formControlName="country" value={this.state.country} name="country" onChange={this.handleOnChange}/>
+				<div className="form-group row">
+					<label for="country" className="col-sm-3 col-form-label">Country:</label>
+					<div className="col-sm-9">
+						<input className="form-control form-input" id="country" formControlName="country" value={this.state.country} name="country" onChange={this.handleOnChange}/>
+					</div>
 				</div>
-				<div class="form-item">
-					<label class="cus-form-label">Postal Code:</label>
-					<input class="form-control form-input" id="postal_code" formControlName="postal_code" value={this.state.postal_code} name="postal_code" onChange={this.handleOnChange}/>
+				<div className="form-group row">
+					<label for="postal_code" className="col-sm-3 col-form-label">Postal Code:</label>
+					<div className="col-sm-9">
+						<input className="form-control form-input" id="postal_code" formControlName="postal_code" value={this.state.postal_code} name="postal_code" onChange={this.handleOnChange}/>
+					</div>
 				</div>
 			</div>
-			<button class="btn btn-primary" type="submit">Save</button>
+			<button className="btn btn-primary" type="submit">Save</button>
 		</form>)
 	}
 
@@ -76,7 +89,7 @@ class AddressForm extends React.Component {
 		return (
 			<div className="container">
 				{ loading ? <Loading /> : <div className="row my-2">
-					<div class="container">
+					<div className="container">
 						{ this.displayAddressForm() }
 					</div>
 				</div> }

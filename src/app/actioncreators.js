@@ -13,7 +13,7 @@ const requestApi = (params) => {
 	const url = `${urlRoot}${params.path}`
 	const responseType = (params.responseType || 'json')
 	let token = localStorage.getItem("token")
-	const headers = token && {'Authorization': `Bearer ${token}`}
+	const headers = params.headers || (token && {'Authorization': `Bearer ${token}`})
 
 	const requestParams = { method, url, responseType, headers }
 
@@ -104,7 +104,7 @@ export function getAddresses(params={}) {
 	return function(dispatch) {
 		return requestApi({
 			method : 'GET',
-			path : '/addresses',
+			path : '/addresses/',
 			data : params
 		})
 	}
@@ -125,9 +125,9 @@ export function applyCoupon(params={}) {
 		let cart_id = localStorage.getItem('cart_id')
 		params['cart_id'] = cart_id
 		return requestApi({
-			method : 'GET',
+			method : 'POST',
 			path : '/coupon/',
-			params : params
+			data : params
 		})
 		.then(res => {
 			let response = res.data
@@ -164,18 +164,19 @@ export function setNotifications(notifications) {
 
 export function logIn(params = {}) {
 	return function(dispatch){
-		return fetch(`http://localhost:8000/login`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				"Accept": "application/json"
-			},
-			body: JSON.stringify(params)
+		let headers = {
+			"Content-Type": "application/json",
+			"Accept": "application/json"
+		}
+		return requestApi({
+			method : 'POST',
+			path : '/login',
+			data : params,
+			headers: headers
 		})
-			.then(res => res.json())
 			.then(response => {
-				if (response.type == "success") {
-					localStorage.setItem("token", response.data.token)
+				if (response.data.type == "success") {
+					localStorage.setItem("token", response.data.data.token)
 					dispatch({type: action.LOG_IN, data: response.data.token})
 				}
 				return response
@@ -191,13 +192,15 @@ export function logOut(params = {}) {
 
 export function signUserUp(params = {}) {
 	return function(dispatch){
-		return fetch(`http://localhost:8000/register`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				"Accept": "application/json"
-			},
-			body: JSON.stringify(params)
+		let headers = {
+			"Content-Type": "application/json",
+			"Accept": "application/json"
+		}
+		return requestApi({
+			method : 'POST',
+			path : '/register',
+			data : params,
+			headers: headers
 		})
 	}
 }

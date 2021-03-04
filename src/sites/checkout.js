@@ -2,13 +2,10 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import * as actionCreators from './../app/actioncreators'
 import Loading from '../app/loader'
 import PaymentForm from './payment'
-import {Elements} from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
-import {injectStripe} from '@stripe/react-stripe-js';
 import {stringifyAddress} from '../app/helper'
 import TrimString from '../app/trimstring'
 import OrderPriceSummary from './order-price-summary'
@@ -21,6 +18,10 @@ class Checkout extends React.Component {
 	}
 
 	componentDidMount() {
+		this.loadCheckoutDetails()
+	}
+
+	componentWillReceiveProps() {
 		this.loadCheckoutDetails()
 	}
 
@@ -93,10 +94,10 @@ class Checkout extends React.Component {
 						</div>
 
 						<div class="checkout-address">Shipping Address: </div>
-						<div class="checkout-value align-left">{ stringifyAddress(checkoutDetails.shipping_address) }</div>
+						<div class="checkout-value align-left"><TrimString string={stringifyAddress(checkoutDetails.shipping_address)} length={45}/></div>
 						
 						<div class="checkout-address">Billing Address: </div>
-						<div class="checkout-value align-left">{ stringifyAddress(checkoutDetails.billing_address) }</div>
+						<div class="checkout-value align-left"><TrimString string={stringifyAddress(checkoutDetails.billing_address)} /></div>
 
 						<div>Order Total: </div>
 						<div class="checkout-value align-left">{ checkoutDetails.cart.total }</div>
@@ -129,6 +130,7 @@ const CheckoutWithRouter = withRouter(Checkout)
 
 const mapStateToProps = (state) => {
 	return {
+		cart: state.cart,
 		isLoggedIn: state.isLoggedIn
 	}
 }

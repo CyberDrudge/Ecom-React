@@ -19,7 +19,7 @@ class AddressList extends React.Component {
 
 	loadAddresses() {
 		const { loading } = this.state
-		const { actions, history } = this.props
+		const { actions } = this.props
 		if (!loading) {
 			this.setState({loading: true, response: false})
 		}
@@ -38,7 +38,7 @@ class AddressList extends React.Component {
 	}
 
 	onSubmit = (e) => {
-		const { actions, history } = this.props
+		const { history } = this.props
 		const { billing_address, shipping_address } = this.state
 		e.preventDefault()
 		localStorage.setItem("billing_address", billing_address);
@@ -52,15 +52,23 @@ class AddressList extends React.Component {
 		const { addressList } = this.state
 		let rows = []
 		addressList.forEach((address, index) => {
-			rows.push(<div class='row'>
-				<div class="col-1">
-					<input type="radio" name={address_type} value={ address.id } onChange={this.handleOnChange} />
+			rows.push(<div className='row'>
+				<div className="col-1 card-body">
+					<input type="radio" id={address_type+address.id} name={address_type} value={ address.id } onChange={this.handleOnChange} />
 				</div>
-				<div class="card address-card">
-					<div class="card-body">
-					<h4 class="card-title">{ address.address_line1 }</h4>
-						<br/>
+				<div className="card address-card">
+					<label for={address_type+address.id}>
+					<div className="card-body">
+						<div className=" font20">
+							{ address.name } { address.nickname && <span> | { address.nickname }</span> }
+						</div>
+						<div>
+							<span className="font20">{ address.address_line1 }, </span> { address.address_line2 && <span> { address.address_line2 }</span> }
+						</div>
+						<div>{ address.city }, { address.state }, { address.country }</div>
+						<div className="font20">{ address.postal_code }</div>
 					</div>
+					</label>
 				</div>
 			</div>)
 		})
@@ -72,24 +80,24 @@ class AddressList extends React.Component {
 		return (
 			<div className="container">
 				{ loading ? <Loading /> : <div className="row my-2">
-					<div class="container">
-						<div class='info-2-5'>Addresses 
-							<Link class="btn btn-primary float-right add-new" to="/address-add">Add a New Address</Link>
+					<div className="container">
+						<div className='info-2-5'>Addresses 
+							<Link className="btn btn-primary float-right add-new" to="/address-add">Add a New Address</Link>
 							<hr/>
 						</div>
 						<form onSubmit={this.onSubmit}>
-							<div class="row">
-								<div class="col-6">
-									<div class="info-1-5">Select Billing Address</div>
+							<div className="row align-left">
+								<div className="col-6">
+									<div className="info-1-5 my-10">Select Billing Address</div>
 									{ this.displayAddresses("billing_address") }
 								</div>
 
-								<div class="col-6">
-									<div class="info-1-5">Select Shipping Address</div>
+								<div className="col-6">
+									<div className="info-1-5 my-10">Select Shipping Address</div>
 									{ this.displayAddresses("shipping_address") }
 								</div>
 							</div>
-							<div class="text-center"><button class="btn btn-primary select-address" type="submit">Select Addresses</button></div>
+							<div className="text-center"><button className="btn btn-primary select-address" type="submit">Select Addresses</button></div>
 						</form>
 					</div>
 				</div> }

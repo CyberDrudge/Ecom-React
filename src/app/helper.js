@@ -10,7 +10,7 @@ export const stringifyAddress = (address) => {
 		addressString += address.name
 	}
 	if (address.nickname){
-		addressString += ' (' + address.nickname + '), '
+		addressString += ' (' + address.nickname + ')'
 	}
 	addressString += ', '
 	if (address.address_line1){
