@@ -25,7 +25,7 @@ class Login extends Component {
 		e.preventDefault()
 		actions.logIn(this.state)
 			.then(res => {
-				if (res.type == "success") {
+				if (res.data.type == "success") {
 					this.setState({isLoggingIn: false})
 					history.push({pathname: "/"})
 				} else {

@@ -24,7 +24,7 @@ class Register extends Component {
 		e.preventDefault()
 		actions.signUserUp(this.state)
 			.then(res => {
-				if (res.type == "success") {
+				if (res.data.type == "success") {
 					this.setState({loading: false, authFailed: false})
 					history.push({pathname: "/login"})
 				} else {
