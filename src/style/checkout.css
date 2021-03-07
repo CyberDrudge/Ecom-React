@@ -14,7 +14,12 @@
 	margin-bottom: 20px
 }
 
+.checkout-label {
+	color: #7ba1e0;
+}
 .checkout-value{
+	display: flex;
+	align-items: center;
 	font-size: 1.25rem;
 	padding-left: 50px;
 }
@@ -30,5 +35,26 @@
 }
 
 .coupon {
-	border: 5px solid white;
+	border: 5px solid #303436;
+}
+
+.coupon-form input {
+	background-color: #181a1b;
+	border: 1px solid #3c4144;
+	color: #b5afa6;
+}
+
+.coupon-form input:focus {
+	background-color: rgb(19, 21, 22);
+	border: 1px solid rgb(119, 110, 98);
+	color: rgb(181, 175, 166);
+}
+
+.order-price-summary .list-group-item {
+	background-color: #585f63;
+	color: #b5afa6;
+}
+
+.order-price-summary .subtext {
+	color: black;
 }

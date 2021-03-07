@@ -35,7 +35,7 @@ class OrderPriceSummary extends React.Component {
 					<span className="subtext">Total</span>
 					<strong>{ order.total }</strong>
 				</li>
-			/ul>
+			</ul>
 			<Coupon actions={actions} />
 		</div>)
 	}
