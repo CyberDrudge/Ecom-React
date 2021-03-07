@@ -81,7 +81,7 @@ class AddressList extends React.Component {
 			<div className="container">
 				{ loading ? <Loading /> : <div className="row my-2">
 					<div className="container">
-						<div className='info-2-5'>Addresses 
+						<div className='info-2-5 heading'>Addresses 
 							<Link className="btn btn-primary float-right add-new" to="/address-add">Add a New Address</Link>
 							<hr/>
 						</div>

@@ -6,9 +6,7 @@ import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import * as actionCreators from './../app/actioncreators'
 import Loading from '../app/loader'
-import Coupon from './coupon'
 import TrimString from '../app/trimstring'
-import OrderPriceSummary from './order-price-summary'
 import ItemQuantity from './item-quantity'
 
 class Cart extends React.Component {
@@ -45,34 +43,34 @@ class Cart extends React.Component {
 
 	displayCartItems() {
 		const { cart } = this.props
-		const { loading } = this.state
 		let cartItems = cart.toJS().items
 		let rows = []
 		cartItems.forEach((item, index) => {
 			let price = item.product.discount_price || item.product.price
+			let item_price = (item.quantity * price).toFixed(2)
 			rows.push(<tr className='cart-product' key={index}>
-				<th className="text-center" scope="row">{ index+1 }.</th>
+				<td className="text-center" scope="row">{ index+1 }.</td>
 				<td className="align-left">
 					<a className="product-name" href="{{ product.get_absolute_url }}"><TrimString string={item.product.title} length={57}/></a>
 				</td>
 				<td className="pr-20">
 					<ItemQuantity item={item}/>
 				</td>
-				<td>{ item.quantity * price }</td>
+				<td>{ item_price }</td>
 			</tr>)
 		})
 		return rows
 	}
 
 	displayCart() {
-		const { cart, actions } = this.props
+		const { cart } = this.props
 		let subtotal = cart.toJS().subtotal
 		let total = cart.toJS().total
 		let deliveryCharge = cart.toJS().delivery_charge
 		return (<div className="row cart-container w-100">
 			<div className="ml-20">
 			    <h4 class="d-flex justify-content-between align-items-center mb-3">
-				    <span class="text-muted">Your Cart</span>
+				    <span>Your Cart</span>
 			    </h4>
 		    </div>
 			<div className="col-sm-12">

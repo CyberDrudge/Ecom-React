@@ -134,8 +134,8 @@ export function applyCoupon(params={}) {
 			let cart = response.data
 			if (response.type == "success") {
 				dispatch({type: action.SET_CART, data: cart})
-				return response
 			}
+			return response
 		})
 	}
 }

@@ -1,20 +1,14 @@
 import React, { useState } from "react";
-import { Link, withRouter } from "react-router-dom";
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, injectStripe, useElements, useStripe} from '@stripe/react-stripe-js';
-import * as actionCreators from './../app/actioncreators'
-import { request } from 'axios'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import Loading from '../app/loader'
-import { useDispatch } from "react-redux";
 
 const PaymentForm = (props) => {
 	return (<div>
 		<Elements stripe={stripePromise}>
-			<CheckoutFormZZ  props={props}/>
+			<CheckoutFormConnect props={props}/>
 		</Elements>
 	</div>)
 }
@@ -98,9 +92,8 @@ const CheckoutForm = (props) => {
 		const card = elements.getElement(CardElement)
 		const result = await stripe.createToken(card)
 		if (result.error) {
-			console.log(result.error.message)
+			console.log("An Error occured")
 		} else {
-			console.log(result.token)
 			let context = {
 					'cart_id': cart_id,
 					'billing_address_id': billing_address_id,
@@ -110,16 +103,13 @@ const CheckoutForm = (props) => {
 			props.props.placeOrder(context)
 					.then(res => {
 							let response = res.data
-							// this.setState({ loading: false,  isCheckoutDone: true})
-							console.log("SSSSS")
 							setProcessing(false)
 							props.props.history.push({pathname: "/order-placed"})
-							// actions.checkout()
+							props.props.checkout()
 					})
 					.catch(() => {
 							// this.setState({loading:false, error:<Error message="Failed to load sites. Please refresh this page or Contact us."/>})
 							// this.setState({loading:false})
-							console.log("ERR")
 							setProcessing(false)
 							setError(result.error)
 					})
@@ -148,6 +138,6 @@ const CheckoutForm = (props) => {
 const stripePromise = loadStripe('pk_test_5M7DOJHCemkDXjUwGQJfMLeQ00WYWfu1kq');
 
 
-const CheckoutFormZZ = connect(null, null)(CheckoutForm);
+const CheckoutFormConnect = connect(null, null)(CheckoutForm);
 
 export default PaymentForm

@@ -45,7 +45,8 @@ class ProductCard extends React.Component {
 		const { cart, product } = this.props
 		let cartItems = (cart && cart.toJS().items) || []
 		let item = cartItems.find(obj => obj.product.id === product.id)
-		let imageSrc = `http://localhost:8000${product.image}`
+		// let imageSrc = `http://localhost:8000/media${product.image}`
+		let imageSrc = `https://cyber-ecom.herokuapp.com/static${product.image}`
 		let label = product.label && LABEL[product.label]
 		let main_price, sub_price
 		if (product.discount_price) {

@@ -49,9 +49,10 @@ export default function(state = initialState(), action) {
 	switch (action.get('type')) {
 		case actionName.CHECKOUT:
 			localStorage.removeItem("cart_id")
-			return Object.assign({}, state, {
-				cart: []
-			})
+			// return Object.assign({}, state, {
+			// 	cart: {}
+			// })
+			return { ...state, cart: "" }
 		case actionName.LOG_IN:
 			return Object.assign({}, state, {
 				isLoggedIn: true

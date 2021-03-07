@@ -71,7 +71,7 @@ class Checkout extends React.Component {
 		let cartItems = (checkoutDetails && checkoutDetails.cart.items) || []
 		let rows = []
 		cartItems.forEach((item, index) => {
-			let imageSrc = `http://localhost:8000${item.product.image}`
+			let imageSrc = `https://cyber-ecom.herokuapp.com/static${item.product.image}`
 			rows.push(<li className="align-left mb-20">
 				{ item.quantity } x <img src={imageSrc} className="checkout-product-image" alt="No Image Available" /> <TrimString string={item.product.title} length={40} /> 
 			</li>)
@@ -82,27 +82,27 @@ class Checkout extends React.Component {
 		const { checkoutDetails } = this.state
 		const { actions, history } = this.props
 		return (<div class="checkout-container">
-			<div class="info-2">Complete Your Order</div>
-			<div className="row">
+			<div class="info-2 heading">Complete Your Order</div>
+			<div className="row mt-30">
 				<div className="col-sm-8">
-					<div class="info-1-5 my-3 checkout align-left mb-20">
-						<div>Cart Items: </div>
+					<div class="info-1-5 checkout align-left mb-20">
+						<div className="checkout-label">Cart Items: </div>
 						<div class="info-1-25 checkout-cart-item">
 							<ol>
 								{ this.displayCartItems() }
 							</ol>
 						</div>
 
-						<div class="checkout-address">Shipping Address: </div>
+						<div class="checkout-address checkout-label">Shipping Address: </div>
 						<div class="checkout-value align-left"><TrimString string={stringifyAddress(checkoutDetails.shipping_address)} length={45}/></div>
 						
-						<div class="checkout-address">Billing Address: </div>
+						<div class="checkout-address checkout-label">Billing Address: </div>
 						<div class="checkout-value align-left"><TrimString string={stringifyAddress(checkoutDetails.billing_address)} /></div>
 
-						<div>Order Total: </div>
+						<div className="checkout-label">Order Total: </div>
 						<div class="checkout-value align-left">{ checkoutDetails.cart.total }</div>
 					</div>
-					<PaymentForm placeOrder={actions.placeOrder} history={history} />
+					<PaymentForm placeOrder={actions.placeOrder} checkout={actions.checkout} history={history} />
 					{false && <button class='btn btn-primary' onClick={this.purchase}>Purchase</button> }
 				</div>
 				<OrderPriceSummary />

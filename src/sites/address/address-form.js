@@ -34,8 +34,8 @@ class AddressForm extends React.Component {
 	}
 
 	displayAddressForm() {
-		return (<form onSubmit={this.onSubmit} className="container">
-			<div className="info-2-5 mb-20">Add Your Address</div>
+		return (<form onSubmit={this.onSubmit} className="container address-form">
+			<div className="info-2-5 mb-20 heading">Add Your Address</div>
 			<div className="secondary">
 				<div className="required-field form-group row">
 					<label for="name" className="col-sm-3 col-form-label">Name: </label>
